@@ -27,7 +27,7 @@ On the first turn of every new session, before any other work, file and rename t
 
 1. **Section**: pick exactly one, find it by name with `list_sections`, then `move_sessions(["self"], section_id)`. Create it only if missing.
    - `Brain`: meetings, notes, vault/Obsidian management, personal knowledge base.
-   - `Platform`: Platform Engineering work that is not pure dev on a ticket: wiki, AI-SDLC tooling, team process, ops, investigations, reviews.
+   - `Team`: team work that is not tied to a ticket: roadmap, communication, team process, wiki, AI-SDLC tooling, ops, investigations, reviews.
    - `Projects`: work on a specific ticket (`PE-*`, `SFE-*`) or an ad-hoc project.
    - `Various`: everything else.
 2. **Title**: `set_session_title("self", "<SLUG> · <Short title>")`.
