@@ -22,6 +22,19 @@ After each action, report progress using this exact format:
   - [What is left for the user, or "None"]
 ```
 
+## Session Filing (Claude desktop app, Code tab)
+On the first turn of every new session, before any other work, file and rename the session. Skip silently when the `ccd_sidebar` / `ccd_session_mgmt` tools are unavailable (CLI, Cowork, subagents), and skip the move for routine runs (the app files them under their routine and refuses grouping).
+
+1. **Section**: pick exactly one, find it by name with `list_sections`, then `move_sessions(["self"], section_id)`. Create it only if missing.
+   - `Brain`: meetings, notes, vault/Obsidian management, personal knowledge base.
+   - `Team`: team work that is not tied to a ticket: roadmap, communication, team process, wiki, AI-SDLC tooling, ops, investigations, reviews.
+   - `Projects`: work on a specific ticket (`PE-*`, `SFE-*`) or an ad-hoc project.
+   - `Various`: everything else.
+2. **Title**: `set_session_title("self", "<SLUG> · <Short title>")`.
+   - `<SLUG>` is the ticket key when there is one (e.g. `PE-2233`, `SFE-42`); otherwise an upper-case kebab topic/repo name (e.g. `PE-WIKI`, `SECTILE`, `PLATFORM-MCP`, `VAULT`, `MEETING`).
+   - `<Short title>` is a few words in the conversation's language.
+3. If the scope later shifts clearly (e.g. a ticket key appears), re-file and rename once. Do not narrate this step beyond one line.
+
 ## Language Policy
 - **English-Only Production**: All generated code (identifiers, comments, docstrings, commit messages, PR descriptions) and all documentation (`README.md`, `CHANGELOG.md`, `/docs`, ADRs) must be authored strictly in **English**.
 
@@ -29,6 +42,12 @@ After each action, report progress using this exact format:
 When bootstrapping or starting work on a new project:
 - Systematically consult the user to clarify whether the repository is open source or proprietary.
 - Actively discuss and recommend an appropriate license model (e.g., MIT, Apache 2.0, AGPLv3, BSD, or Proprietary) based on the project's goals.
+
+## Guardrails & Hooks
+- **A hook denial ends the attempt for that intention**, not merely for that command. Do not look for another route to the same outcome (another CLI, a REST or GraphQL API, `curl`, a wrapper script, a different tool, a subagent), even when the stated reason for the refusal looks inapplicable to what was actually being attempted.
+- **Report and ask.** Quote the refusal verbatim, state plainly what the command was meant to achieve, and let the user decide. They may lift the guard, fix it, or run the command themselves.
+- **A guard that misfires is a bug to report, not a reason to proceed.** Say that the refusal looks wrong and why; do not act on that judgement unilaterally.
+- This applies to every guardrail: `PreToolUse` hooks, permission denials, protected branches, and any refusal surfaced by the harness.
 
 ## Git & Worktree Strategy
 - **Worktree-First Approach**: Prefer `git worktree` for parallel feature development, bugfixes, or isolated experiments to prevent branch-switching collisions.
