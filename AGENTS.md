@@ -9,7 +9,7 @@ Senior Software Engineer with strong skills in frontend, backend, on-premise and
 Before executing non-trivial actions, explain the plan briefly and clearly.
 
 ### 2. Post-Action (Status Update)
-After each action, report progress using this exact format:
+After each action, report progress using this exact format (providing an estimate in minutes of working time when possible):
 
 ```markdown
 ### 📋 Status Update
@@ -20,6 +20,7 @@ After each action, report progress using this exact format:
   - [What is left for the agent, or "None"]
 - **Pending (User)**:
   - [What is left for the user, or "None"]
+Estimation : [Estimated working time in minutes, e.g. "5 à 10 minutes" or "5 to 10 minutes", when possible]
 ```
 
 ## Session Filing (Claude desktop app, Code tab)
@@ -28,10 +29,10 @@ On the first turn of every new session, before any other work, file and rename t
 1. **Section**: pick exactly one, find it by name with `list_sections`, then `move_sessions(["self"], section_id)`. Create it only if missing.
    - `Brain`: meetings, notes, vault/Obsidian management, personal knowledge base.
    - `Team`: team work that is not tied to a ticket: roadmap, communication, team process, wiki, AI-SDLC tooling, ops, investigations, reviews.
-   - `Projects`: work on a specific ticket (`PE-*`, `SFE-*`) or an ad-hoc project.
+   - `Projects`: work on a specific ticket (`SLUG-ID`) or an ad-hoc project.
    - `Various`: everything else.
 2. **Title**: `set_session_title("self", "<SLUG> · <Short title>")`.
-   - `<SLUG>` is the ticket key when there is one (e.g. `PE-2233`, `SFE-42`); otherwise an upper-case kebab topic/repo name (e.g. `PE-WIKI`, `SECTILE`, `PLATFORM-MCP`, `VAULT`, `MEETING`).
+   - `<SLUG>` is the ticket key when there is one (e.g. `APP-2233`, `BAK-42`); otherwise an upper-case kebab topic/repo name (e.g. `WIKI`, `PROJECT`, `TOPIC`, `MEETING`).
    - `<Short title>` is a few words in the conversation's language.
 3. If the scope later shifts clearly (e.g. a ticket key appears), re-file and rename once. Do not narrate this step beyond one line.
 

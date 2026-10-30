@@ -25,7 +25,7 @@ ai-setup/
 - **Role**: Senior Software Engineer with deep expertise in frontend, backend, on-premise and cloud architecture, high-QPS systems, and distributed computing.
 - **Communication Protocol**:
   - Mandatory pre-action concise plan before non-trivial steps.
-  - Standardized post-action status updates (`Done`, `Remaining (Agent)`, `Pending (User)`).
+  - Standardized post-action status updates (`Done`, `Remaining (Agent)`, `Pending (User)`, and working time estimation when possible).
 - **Language Policy**: Strictly **English-only** for all code, comments, docstrings, commits, and documentation.
 - **Open Source & Licensing**: Proactive consultation on open source intent and licensing models (MIT, Apache 2.0, etc.) for new projects.
 - **Git & Worktree Strategy**: Worktree-first workflow for parallel tasks and strict branch/worktree naming conventions (`<type>/<description>`).
